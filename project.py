@@ -1,26 +1,5 @@
-# This is a simple terminal-based food ordering system. built using Python and MySQL. 
-# It supports functionalities for both admin and users.
-
-#user features:
-
-    # Register with name,email,phone-no,password
-    # Login using Gmail and password (hidden using getpass)
-    # view currrent Menu
-    # place orders and get bill
-
-# admin features:(secure login with fixed credintials )
-    # admin= aditi
-# password=0602
-# display_items
-# add new items
-# delete items
-# order list and total revenue
-
-#** Password input is hidden using the getpass module for better security.
-
 
 # Required modules for database and password input
-
 import mysql.connector
 import getpass
  # Class for Food Ordering System
