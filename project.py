@@ -1,4 +1,3 @@
-
 # Required modules for database and password input
 import mysql.connector
 import getpass
@@ -11,7 +10,6 @@ class food:
             password="root",
             database="food_center",
             auth_plugin="mysql_native_password"
-           
         )
          # Creating cursor object for executing SQL queries
         self.my_cursor=self.db.cursor()
@@ -180,7 +178,7 @@ class food:
 
         total = 0
         ordered_items = []
-        while True:
+        while True:   
             for i, (item, price) in enumerate(items, 1):
                 print(f"{i}. {item} - Rs.{price}")
             print(f"{len(items) + 1}. Exit and show bill")
@@ -188,21 +186,18 @@ class food:
                 print("                                         ")
                 choice = int(input("Select item number to order: "))
                 if choice == len(items) + 1:
-                    break
-                elif 1 <= choice <= len(items):
-                    item_name = items[choice - 1][0]
+                    break   
+                elif 1 <= choice <= len(items):   
+                    item_name = items[choice - 1][0] 
                     price = items[choice - 1][1]
                 self.my_cursor.execute(
-                    "INSERT INTO orders (item_name, Price) VALUES (%s, %s)",
-                    (item_name, price)
+                    "INSERT INTO orders (item_name, Price) VALUES (%s, %s)",(item_name, price)
                 )
                 self.db.commit()
-
                 total += price
                 ordered_items.append(item_name)
                 print("                                         ")
                 print(f" Added {items[choice - 1][0]} to order.")
-
             except:
                 print(" Please enter a valid number.")
         print(f"\n Your total bill is Rs.{total}")
@@ -213,14 +208,17 @@ class food:
         print("                                                     ")
         while(True):
             print(" 1:Admin login\n 2:User Register\n 3:User Login\n 4:Exit")
-            choice=int(input("enter the choice:..."))
-            if choice==1:
+            choice=input("enter the choice:...")
+            if not choice.isdigit():
+             print(" Invalid input! Please enter a number (1-4).")
+             continue
+            if choice=='1':
                 self.Admin_login()
-            elif choice==2:
+            elif choice=='2':
                 self.user_register()
-            elif choice==3:
+            elif choice=='3':
                 self.user_login()
-            elif choice==4: 
+            elif choice=='4': 
                 break
             else:
                 print("-----------> Invalid Choice <---------------")        
